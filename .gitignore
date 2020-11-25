@@ -3,4 +3,5 @@ node_modules
 
 # Sourcemaps.
 dist/*.map
+.idea
 
