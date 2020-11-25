@@ -2,14 +2,6 @@
   "name": "structured-channel",
   "version": "1.1.0",
   "description": "A wrapper around MessageChannel API for bi-directional communication between two browsing contexts.",
-  "main": "lib/structured-channel.js",
-  "scripts": {
-    "build": "webpack",
-    "dist": "webpack && webpack --config webpack.min.config.js",
-    "test": "karma start --single-run=true karma.conf.js",
-    "watch-build": "webpack -wd",
-    "watch-test": "karma start karma.conf.js"
-  },
   "keywords": [
     "MessageChannel",
     "worker",
@@ -17,19 +9,45 @@
     "communication",
     "channel"
   ],
-  "author": "Sami Jaktholm <sjakthol@outlook.com>",
   "license": "MIT",
+  "author": {
+    "name": "Yaroslav Chapelskyi",
+    "email": "slavko@shelf.oi"
+  },
+  "main": "lib/structured-channel.js",
+  "scripts": {
+    "build": "webpack",
+    "dist": "webpack && webpack --config webpack.min.config.js",
+    "lint": "eslint lib package.json --ext .js,.jsx,.ts,.tsx,.json --fix",
+    "test": "karma start --single-run=true karma.conf.js",
+    "watch-build": "webpack -wd",
+    "watch-test": "karma start karma.conf.js"
+  },
+  "prettier": "@shelf/prettier-config",
+  "eslintConfig": {
+    "extends": [
+      "@shelf/eslint-config"
+    ],
+    "globals": {
+      "StructuredChannel": true
+    }
+  },
   "dependencies": {},
   "devDependencies": {
+    "@shelf/eslint-config": "0.24.0",
+    "@shelf/prettier-config": "0.0.7",
     "babel-core": "^5.8.22",
     "babel-loader": "^5.3.2",
     "chai": "^3.2.0",
+    "eslint": "7.14.0",
+    "jest": "26.6.3",
     "karma": "^0.13.9",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.2.0",
     "karma-firefox-launcher": "^0.1.6",
     "karma-mocha": "^0.2.0",
     "mocha": "^2.2.5",
+    "prettier": "2.2.0",
     "webpack": "^1.11.0"
   }
 }

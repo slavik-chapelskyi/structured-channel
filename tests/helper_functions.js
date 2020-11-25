@@ -1,5 +1,5 @@
-var PONG_FRAME_URL = "/base/tests/helper_pong-frame.html";
-var PONG_SCRIPT_URL = "/base/tests/helper_pong-script.js";
+var PONG_FRAME_URL = '/base/tests/helper_pong-frame.html';
+var PONG_SCRIPT_URL = '/base/tests/helper_pong-script.js';
 
 /**
  * Initializes a new iframe with the given URL.
@@ -9,16 +9,17 @@ var PONG_SCRIPT_URL = "/base/tests/helper_pong-script.js";
  * the frame has loaded.
  */
 function initializeFrame(url) {
-  var frame = document.createElement("iframe");
-  var res = new Promise(function(resolve) {
-    frame.addEventListener("load", function h() {
-      frame.removeEventListener("load", h);
+  var frame = document.createElement('iframe');
+  var res = new Promise(function (resolve) {
+    frame.addEventListener('load', function h() {
+      frame.removeEventListener('load', h);
       resolve(frame.contentWindow);
     });
   });
-  frame.style.display = "none";
+  frame.style.display = 'none';
   frame.src = url || PONG_FRAME_URL;
   document.body.appendChild(frame);
+
   return res;
 }
 
@@ -42,7 +43,7 @@ function initializeWorker(url) {
  * ready.
  */
 function initializeChannelToFrame(url, targetOrigin, global) {
-  return initializeFrame(url).then(function(win) {
+  return initializeFrame(url).then(function (win) {
     return StructuredChannel.connectTo(win, targetOrigin, global);
   });
 }
@@ -59,6 +60,7 @@ function initializeChannelToFrame(url, targetOrigin, global) {
  */
 function initializeChannelToWorker(url, targetOrigin, global) {
   var worker = initializeWorker(url);
+
   return StructuredChannel.connectTo(worker, targetOrigin, global);
 }
 
@@ -71,7 +73,7 @@ function initializeChannelToWorker(url, targetOrigin, global) {
  * @return {Function} Test function to be passed to it().
  */
 function windowTest(body) {
-  return function() {
+  return function () {
     return initializeChannelToFrame().then(body);
   };
 }
@@ -85,7 +87,7 @@ function windowTest(body) {
  * @return {Function} Test function to be passed to it().
  */
 function workerTest(body) {
-  return function() {
+  return function () {
     return initializeChannelToWorker().then(body);
   };
 }
@@ -99,8 +101,8 @@ function workerTest(body) {
  * @return {Function} Test function to be passed to it().
  */
 function genericTest(body) {
-  return function() {
-    return windowTest(body)().then(function() {
+  return function () {
+    return windowTest(body)().then(function () {
       return workerTest(body)();
     });
   };
@@ -115,8 +117,9 @@ function genericTest(body) {
 function createChannelPair() {
   var childPromise = StructuredChannel.waitForConnection(window);
   var parentPromise = StructuredChannel.connectTo(window);
-  return Promise.all([childPromise, parentPromise]).then(function(channels) {
-    return { child: channels[0], parent: channels[1] };
+
+  return Promise.all([childPromise, parentPromise]).then(function (channels) {
+    return {child: channels[0], parent: channels[1]};
   });
 }
 
@@ -129,14 +132,17 @@ function createChannelPair() {
  * @return {Promise} A Promise that is fulfilled once the given promise settles.
  */
 function expectRejection(promise, rgx) {
-  return promise.then(function() {
-    expect(true, "Unexpected success!").to.be.false;
-  }, function(err) {
-    expect(true, "Rejected, as expected!").to.be.true;
-    if (rgx) {
-      expect(err).to.match(rgx);
+  return promise.then(
+    function () {
+      expect(true, 'Unexpected success!').to.be.false;
+    },
+    function (err) {
+      expect(true, 'Rejected, as expected!').to.be.true;
+      if (rgx) {
+        expect(err).to.match(rgx);
+      }
     }
-  })
+  );
 }
 
 /**
@@ -149,10 +155,10 @@ function expectRejection(promise, rgx) {
  * packet arrives.
  */
 function once(channel, event) {
-  return new Promise(function(resolve) {
+  return new Promise(function (resolve) {
     channel.on(event, function h(payload) {
       channel.off(event, h);
       resolve(payload);
-    })
+    });
   });
 }
