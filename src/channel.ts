@@ -231,7 +231,7 @@ class Channel {
     target: Window | Worker,
     targetOrigin?: string | typeof globalThis,
     global?: typeof globalThis
-  ) {
+  ): Promise<Channel> {
     if (!target) {
       return Promise.reject('Target must be defined.');
     }
@@ -301,7 +301,7 @@ class Channel {
    * @return {Promise} that is resolved with a `StructuredChannel` instance once
    * the connection request is received.
    */
-  static waitForConnection(target: Worker | Window = self, origin?: string) {
+  static waitForConnection(target: Worker | Window = self, origin?: string): Promise<Channel> {
     return new Promise(resolve => {
       const handler = (event: MessageEvent) => {
         if (event.data !== HELLO_TYPE) {

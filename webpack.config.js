@@ -3,6 +3,7 @@ module.exports = {
   output: {
     library: 'StructuredChannel',
     libraryTarget: 'umd',
+    filename: 'index.js',
     path: `${__dirname}/lib`,
     globalObject: 'this',
     environment: {
