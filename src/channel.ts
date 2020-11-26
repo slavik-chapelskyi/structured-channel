@@ -6,7 +6,7 @@ const HELLO_TYPE = 'x-channel-internal-hello';
 const ANY_ORIGIN = '*';
 
 class Channel {
-  public static debug: boolean = false;
+  public static debug = false;
   private _handlers: Map<string, any> = new Map();
   private _pendingMessages: Map<number, any> = new Map();
   private _messageId = 0;

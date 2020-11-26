@@ -12,13 +12,13 @@
   "license": "MIT",
   "author": {
     "name": "Yaroslav Chapelskyi",
-    "email": "slavko@shelf.oi"
+    "email": "slavko@shelf.io"
   },
-  "main": "src/structured-channel.js",
+  "main": "lib/index.js",
+  "types": "lib/index.ts",
   "scripts": {
     "build": "webpack",
-    "dist": "webpack && webpack --config webpack.min.config.js",
-    "lint": "eslint src package.json --ext .js,.jsx,.ts,.tsx,.json --fix",
+    "lint": "eslint src package.json --fix --ext .js,.jsx,.ts,.tsx,.json",
     "test": "karma start --single-run=true karma.conf.js",
     "watch-build": "webpack -wd",
     "watch-test": "karma start karma.conf.js"
@@ -26,11 +26,12 @@
   "prettier": "@shelf/prettier-config",
   "eslintConfig": {
     "extends": [
-      "@shelf/eslint-config"
+      "@shelf/eslint-config/frontend-typescript"
     ]
   },
-  "dependencies": {},
   "devDependencies": {
+    "@babel/preset-env": "7.12.7",
+    "@babel/preset-typescript": "7.12.7",
     "@shelf/eslint-config": "0.24.0",
     "@shelf/prettier-config": "0.0.7",
     "babel-core": "^5.8.22",
