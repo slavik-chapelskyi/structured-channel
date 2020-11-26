@@ -1,3 +1,4 @@
+
 A wrapper around [MessageChannel](https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel) API for bi-directional communication between two browsing contexts.
 
 ## Usage
