@@ -1,4 +1,4 @@
-describe('structuredChannel.send()', function () {
+describe('StructuredChannel.default.send()', function () {
   var data = {a: 1, b: 'test', c: [1, 2, 3], d: {e: null}};
 
   it(

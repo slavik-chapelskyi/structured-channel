@@ -244,7 +244,7 @@ class Channel {
 
     // Create the channel.
     const channel = global ? new global.MessageChannel() : new MessageChannel();
-    const origin = !isGlobal(targetOrigin) ? targetOrigin : ANY_ORIGIN;
+    const origin = targetOrigin || ANY_ORIGIN;
 
     // Initiate the connection.
     try {
@@ -260,13 +260,13 @@ class Channel {
           return Promise.reject("The origins don't match.");
         }
 
-        target.postMessage(HELLO_TYPE, origin, [channel.port2]);
+        target.postMessage(HELLO_TYPE, origin as string, [channel.port2]);
       } else {
         // This is a worker.
         target.postMessage(HELLO_TYPE, [channel.port2]);
       }
     } catch (e) {
-      target.postMessage(HELLO_TYPE, origin, [channel.port2]);
+      target.postMessage(HELLO_TYPE, origin as string, [channel.port2]);
     }
 
     return new Promise(function (resolve, reject) {

@@ -1,9 +1,9 @@
 if (typeof self.importScripts === 'function') {
   // In a Worker. Import the script.
-  self.importScripts('/base/dist/structured-channel.js');
+  self.importScripts('/base/lib/main.js');
 }
 
-StructuredChannel.waitForConnection(this).then(function (chnl) {
+StructuredChannel.default.waitForConnection(this).then(function (chnl) {
   chnl.on('ping', function (payload) {
     return payload;
   });

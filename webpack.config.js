@@ -1,15 +1,12 @@
-const pkg = require('./package.json');
-
 module.exports = {
   entry: './src/index.ts',
   output: {
-    library: pkg.name,
+    library: 'StructuredChannel',
     libraryTarget: 'umd',
-    filename: 'index.js',
     path: `${__dirname}/lib`,
+    globalObject: 'this',
     environment: {
-      arrowFunction: false,
-      destructuring: false
+      arrowFunction: false
     }
   },
   module: {
