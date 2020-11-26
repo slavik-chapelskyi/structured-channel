@@ -1,28 +1,26 @@
 const pkg = require('./package.json');
 
 module.exports = {
-  mode: 'production',
   entry: './src/index.ts',
   output: {
     library: pkg.name,
     libraryTarget: 'umd',
-    umdNamedDefine: true,
     filename: 'index.js',
-    path: `${__dirname}/lib`
+    path: `${__dirname}/lib`,
+    environment: {
+      arrowFunction: false,
+      destructuring: false
+    }
   },
   module: {
     rules: [
       {
         test: /\.(ts|js)x?$/,
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true
-        }
+        loader: 'babel-loader'
       }
     ]
   },
   resolve: {
-    modules: ['node_modules'],
     extensions: ['.ts', '.tsx', '.js', '.json']
   }
 };

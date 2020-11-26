@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig",
   "exclude": [
-    "node_modules",
-    "src/helpers.ts"
+    "node_modules"
   ],
   "include": [
     "src"

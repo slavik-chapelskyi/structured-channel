@@ -15,12 +15,12 @@
     "email": "slavko@shelf.io"
   },
   "main": "lib/index.js",
-  "types": "lib/index.ts",
+  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
   "scripts": {
-    "build": "tsc && webpack",
+    "build": "rm -rf lib && yarn build:types && webpack",
     "build:types": "tsc -p tsconfig.types.json",
     "lint": "eslint src package.json --fix --ext .js,.jsx,.ts,.tsx,.json",
     "test": "karma start --single-run=true karma.conf.js",
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.12.9",
+    "@babel/plugin-transform-runtime": "7.12.1",
     "@babel/preset-env": "7.12.7",
     "@babel/preset-typescript": "7.12.7",
     "@shelf/eslint-config": "0.24.0",
@@ -56,6 +57,7 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "7.12.1"
+    "@babel/plugin-proposal-class-properties": "7.12.1",
+    "@babel/plugin-transform-arrow-functions": "7.12.1"
   }
 }
