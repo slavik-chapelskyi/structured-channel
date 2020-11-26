@@ -1,4 +1,3 @@
-const path = require('path');
 const pkg = require('./package.json');
 
 module.exports = {
@@ -8,8 +7,8 @@ module.exports = {
     library: pkg.name,
     libraryTarget: 'umd',
     umdNamedDefine: true,
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'lib')
+    filename: 'index.js',
+    path: `${__dirname}/lib`
   },
   module: {
     rules: [
@@ -21,5 +20,9 @@ module.exports = {
         }
       }
     ]
+  },
+  resolve: {
+    modules: ['node_modules'],
+    extensions: ['.ts', '.tsx', '.js', '.json']
   }
 };

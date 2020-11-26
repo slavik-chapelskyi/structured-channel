@@ -1,18 +1,13 @@
 {
   "compilerOptions": {
-    "allowJs": false,
-    "emitDeclarationOnly": true,
-    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
     "module": "commonjs",
-    "target": "esnext",
     "skipLibCheck": true,
     "sourceMap": false,
-    "isolatedModules": false,
-    "esModuleInterop": true,
-    "jsx": "react"
+    "target": "esnext"
   },
-  "include": ["src"],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }

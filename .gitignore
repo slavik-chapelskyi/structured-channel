@@ -2,6 +2,7 @@
 node_modules
 
 # Sourcemaps.
-dist/*.map
+dist
+lib
 .idea
 
