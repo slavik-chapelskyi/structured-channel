@@ -14,11 +14,11 @@
     "name": "Yaroslav Chapelskyi",
     "email": "slavko@shelf.oi"
   },
-  "main": "lib/structured-channel.js",
+  "main": "src/structured-channel.js",
   "scripts": {
     "build": "webpack",
     "dist": "webpack && webpack --config webpack.min.config.js",
-    "lint": "eslint lib package.json --ext .js,.jsx,.ts,.tsx,.json --fix",
+    "lint": "eslint src package.json --ext .js,.jsx,.ts,.tsx,.json --fix",
     "test": "karma start --single-run=true karma.conf.js",
     "watch-build": "webpack -wd",
     "watch-test": "karma start karma.conf.js"
@@ -27,10 +27,7 @@
   "eslintConfig": {
     "extends": [
       "@shelf/eslint-config"
-    ],
-    "globals": {
-      "StructuredChannel": true
-    }
+    ]
   },
   "dependencies": {},
   "devDependencies": {
@@ -48,6 +45,7 @@
     "karma-mocha": "^0.2.0",
     "mocha": "^2.2.5",
     "prettier": "2.2.0",
-    "webpack": "^1.11.0"
+    "typescript": "4.1.2",
+    "webpack": "5.7.0"
   }
 }
