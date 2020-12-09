@@ -9,6 +9,7 @@
     "communication",
     "channel"
   ],
+  "repository": "https://github.com/slavik-chapelskyi/structured-channel.git",
   "license": "MIT",
   "author": {
     "name": "Yaroslav Chapelskyi",
