@@ -35,7 +35,7 @@ class Channel {
    * Prints a message to the console if this._doDebug is true.
    * @private
    */
-  private _debug(...args) {
+  private static _debug(...args) {
     if (Channel.debug) {
       return console.log('DEBUG:', ...args);
     }
@@ -57,7 +57,7 @@ class Channel {
   private _handleMessage(event: MessageEvent) {
     const {data} = event;
 
-    this._debug('Got a message with data:', data);
+    Channel._debug('Got a message with data:', data);
 
     const {id, type} = data;
 
@@ -83,18 +83,18 @@ class Channel {
     const {id} = data;
 
     if (!this._pendingMessages.has(id)) {
-      return this._debug('Ignoring an unexpected reply.');
+      return Channel._debug('Ignoring an unexpected reply.');
     }
 
     const {resolve, reject} = this._pendingMessages.get(id);
 
     if (data.error) {
-      this._debug('Received an error reply for message', id);
-      this._debug('Error was', data.error);
+      Channel._debug('Received an error reply for message', id);
+      Channel._debug('Error was', data.error);
       reject(data.error);
     } else {
-      this._debug('Received a success reply for message', id);
-      this._debug('Result was', data.result);
+      Channel._debug('Received a success reply for message', id);
+      Channel._debug('Result was', data.result);
       resolve(data.result);
     }
 
@@ -195,7 +195,7 @@ class Channel {
    * returned. If the other party fails to handle the message, the Promise is
    * rejected.
    */
-  send(type: string, payload?: MessagePayload) {
+  send<T = unknown>(type: string, payload?: MessagePayload): Promise<T> {
     const data: MessageData = {
       id: this._messageId++,
       payload,
